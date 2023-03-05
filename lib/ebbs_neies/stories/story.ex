@@ -13,7 +13,7 @@ defmodule EbbsNeies.Stories.Story do
   @doc false
   def changeset(story, attrs) do
     story
-    |> cast(attrs, [:title, :body])
+    |> cast(attrs, [:title, :body, :user_id])
     |> validate_required([:title, :body])
   end
 end

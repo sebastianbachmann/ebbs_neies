@@ -3,6 +3,8 @@ defmodule EbbsNeiesWeb.StoryLive.FormComponent do
 
   alias EbbsNeies.Stories
 
+  require Logger
+
   @impl true
   def render(assigns) do
     ~H"""
@@ -50,6 +52,12 @@ defmodule EbbsNeiesWeb.StoryLive.FormComponent do
   end
 
   def handle_event("save", %{"story" => story_params}, socket) do
+    Logger.info(current_user_from_formcomponent_attempt2: socket.assigns[:user_id])
+    Logger.info(storyparams_before: story_params)
+
+    story_params = Map.put(story_params, "user_id", socket.assigns[:user_id])
+
+    Logger.info(storyparams_after: story_params)
     save_story(socket, socket.assigns.action, story_params)
   end
 
