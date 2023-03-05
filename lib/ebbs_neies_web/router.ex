@@ -21,6 +21,13 @@ defmodule EbbsNeiesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/stories", StoryLive.Index, :index
+    live "/stories/new", StoryLive.Index, :new
+    live "/stories/:id/edit", StoryLive.Index, :edit
+
+    live "/stories/:id", StoryLive.Show, :show
+    live "/stories/:id/show/edit", StoryLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
