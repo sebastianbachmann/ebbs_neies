@@ -21,6 +21,10 @@ defmodule EbbsNeies.Stories do
     Repo.all(Story)
   end
 
+  def list_stories(user_id) do
+    Repo.all(from s in Story, where: s.user_id == ^user_id)
+  end
+
   @doc """
   Gets a single story.
 
@@ -36,6 +40,10 @@ defmodule EbbsNeies.Stories do
 
   """
   def get_story!(id), do: Repo.get!(Story, id)
+
+  def get_story!(id, user_id) do
+    Repo.one(from s in Story, where: s.id == ^id and s.user_id == ^user_id)
+  end
 
   @doc """
   Creates a story.
